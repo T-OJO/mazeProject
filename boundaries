@@ -1,0 +1,55 @@
+// Testing file to figure out method to create boundaries for the maze project !!
+
+// Reference for moving the player: https://editor.p5js.org/2sman/sketches/rkGp1alib
+
+let playerball;
+let playerXpos;
+let playerYpos;
+var lineXpos1 = 150;
+var lineXpos2 = 150;
+var movement = 4;
+
+function setup() {
+  createCanvas(400, 400);
+  playerball = new Player(200, 200);
+}
+
+function draw() {
+  background(0);
+  playerball.show();
+  stroke(255);
+  line(lineXpos1, 0, lineXpos2, height);
+  playerball.show();
+  playerball.control();
+}
+
+class Player {
+  constructor() {
+    this.xpos = 50;
+    this.ypos = 50;
+    this.playersize = 20;
+  }
+
+  show() {
+    fill(255);
+    ellipse(this.xpos, this.ypos, this.playersize);
+  }
+
+  control() {
+    if (keyCode === UP_ARROW && keyIsPressed) {
+      this.ypos = this.ypos - movement;
+    }
+    if (keyCode === DOWN_ARROW && keyIsPressed) {
+      this.ypos = this.ypos + movement;
+    }
+    if (keyCode === RIGHT_ARROW && keyIsPressed) {
+      this.xpos = this.xpos + movement;
+    }
+    if (keyCode === LEFT_ARROW && keyIsPressed) {
+      this.xpos = this.xpos - movement;
+    }
+    if (this.xpos > lineXpos1 - this.playersize/2) {
+      this.xpos = this.xpos - movement;
+    } else this.xpos = this.xpos;
+  }
+}
